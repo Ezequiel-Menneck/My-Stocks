@@ -9,5 +9,6 @@ public class StocksDTO {
     private String longName;
     private String currency;
     private Double regularMarketPrice;
+    private Double quantity;
 
 }
