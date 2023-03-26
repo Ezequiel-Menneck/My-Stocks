@@ -22,5 +22,10 @@ public class Stocks {
     private String longName;
     private String currency;
     private Double regularMarketPrice;
+    private Double quantity;
+
+    public Double getSubTotal() {
+        return regularMarketPrice * quantity;
+    }
 
 }
