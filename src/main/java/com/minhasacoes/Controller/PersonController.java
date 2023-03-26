@@ -1,6 +1,7 @@
 package com.minhasacoes.Controller;
 
 import com.minhasacoes.DTO.PersonDTO;
+import com.minhasacoes.DTO.StocksDTO;
 import com.minhasacoes.Model.Person;
 import com.minhasacoes.Service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,12 @@ public class PersonController {
    @ResponseStatus(HttpStatus.CREATED)
    public void createPerson(@RequestBody PersonDTO personDTO) {
         personService.create(personDTO);
+   }
+
+   @PostMapping("/add/{id}")
+   @ResponseStatus(HttpStatus.OK)
+   public void addStockToWaller(@PathVariable Integer id, @RequestBody StocksDTO stocksDTO) {
+        personService.addStocksToPerson(id, stocksDTO);
    }
 
 }
