@@ -20,23 +20,23 @@ public class Person {
 
     private String name;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<Stocks> wallet;
 
     public Double getTotalValueInAcoes() {
         double sum = 0;
-        for (Stocks a : wallet) {
-            sum += a.getRegularMarketPrice();
+        for (Stocks stocks : wallet) {
+            sum += stocks.getSubTotal();
         }
         return sum;
     }
 
     public Double getTotalByAcao(Stocks stocks) {
         double sum = 0;
-        for (Stocks a : wallet) {
-            if (Objects.equals(a.getSymbol(), stocks.getSymbol())) {
-                sum = a.getRegularMarketPrice();
+        for (Stocks stocksF : wallet) {
+            if (Objects.equals(stocksF.getSymbol(), stocks.getSymbol())) {
+                sum += stocksF.getSubTotal();
             }
         }
         return sum;
