@@ -1,6 +1,6 @@
 package com.minhasacoes.Repository;
 
-import com.minhasacoes.Model.Stocks;
+import com.minhasacoes.Entities.Stocks;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

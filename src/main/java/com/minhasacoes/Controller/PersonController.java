@@ -2,7 +2,7 @@ package com.minhasacoes.Controller;
 
 import com.minhasacoes.DTO.PersonDTO;
 import com.minhasacoes.DTO.StocksDTO;
-import com.minhasacoes.Model.Person;
+import com.minhasacoes.Entities.Person;
 import com.minhasacoes.Service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
