@@ -22,7 +22,6 @@ public class StocksService {
             throw new ResourceNotFoundException(e.getMessage());
         }
 
-
     }
 
 }
