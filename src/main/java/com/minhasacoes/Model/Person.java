@@ -1,10 +1,11 @@
 package com.minhasacoes.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.text.DecimalFormat;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Getter
@@ -24,22 +25,20 @@ public class Person {
     @ToString.Exclude
     private List<Stocks> wallet;
 
+    @Transient
+    @JsonIgnore
+    DecimalFormat decimalFormat = new DecimalFormat("#.##");
+
     public Double getTotalValueInAcoes() {
         double sum = 0;
         for (Stocks stocks : wallet) {
             sum += stocks.getSubTotal();
         }
-        return sum;
-    }
 
-    public Double getTotalByAcao(Stocks stocks) {
-        double sum = 0;
-        for (Stocks stocksF : wallet) {
-            if (Objects.equals(stocksF.getSymbol(), stocks.getSymbol())) {
-                sum += stocksF.getSubTotal();
-            }
-        }
-        return sum;
+        String formatedSum = decimalFormat.format(sum);
+        formatedSum = formatedSum.replace(",", ".");
+
+        return Double.parseDouble(formatedSum);
     }
 
 }
