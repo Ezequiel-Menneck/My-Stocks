@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,8 +23,6 @@ public class PersonService {
 
     @Autowired
     private StocksService stocksService;
-
-    private static final DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
     public Person findById(Integer id) {
         Optional<Person> optionalPerson = personRepository.findById(id);
@@ -93,22 +90,11 @@ public class PersonService {
         double diff = totalValueInStocksByUser - actualValueOfUserStocksQuantity;
         double averagePriceOfUserStock = totalValueInStocksByUser / quantityOfStocks;
 
-        String formatedSum = decimalFormat.format(totalValueInStocksByUser);
-        String formatedActualValueOfUserStocksQuantity = decimalFormat.format(actualValueOfUserStocksQuantity);
-        String formatedDiff = decimalFormat.format(diff);
-        String formatedUnitPriceOfMarket = decimalFormat.format(unitPriceOfMarket);
-        String formatedAveragePriceOfUserStock = decimalFormat.format(averagePriceOfUserStock);
-        formatedSum = formatedSum.replace(",", ".");
-        formatedActualValueOfUserStocksQuantity = formatedActualValueOfUserStocksQuantity.replace(",", ".");
-        formatedDiff = formatedDiff.replace(",", ".");
-        formatedUnitPriceOfMarket = formatedUnitPriceOfMarket.replace(",", ".");
-        formatedAveragePriceOfUserStock = formatedAveragePriceOfUserStock.replace(",", ".");
-
-        priceComparator.setAllPriceBySymbol(formatedSum);
-        priceComparator.setAllPriceActualQuote(formatedActualValueOfUserStocksQuantity);
-        priceComparator.setPriceDiff(formatedDiff);
-        priceComparator.setAveragePriceOfUserStock(formatedAveragePriceOfUserStock);
-        priceComparator.setUnitPriceOfMarket(formatedUnitPriceOfMarket);
+        priceComparator.setAllPriceBySymbol(totalValueInStocksByUser);
+        priceComparator.setAllPriceActualQuote(actualValueOfUserStocksQuantity);
+        priceComparator.setPriceDiff(diff);
+        priceComparator.setAveragePriceOfUserStock(averagePriceOfUserStock);
+        priceComparator.setUnitPriceOfMarket(unitPriceOfMarket);
 
         return priceComparator;
     }
