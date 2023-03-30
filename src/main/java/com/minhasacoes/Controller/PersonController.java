@@ -3,6 +3,7 @@ package com.minhasacoes.Controller;
 import com.minhasacoes.DTO.PersonDTO;
 import com.minhasacoes.DTO.StocksDTO;
 import com.minhasacoes.Entities.Person;
+import com.minhasacoes.Model.PriceComparator;
 import com.minhasacoes.Service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,16 +22,21 @@ public class PersonController {
         return new ResponseEntity<>(personService.findById(id), HttpStatus.OK);
     }
 
-   @PostMapping("/create")
-   @ResponseStatus(HttpStatus.CREATED)
-   public void createPerson(@RequestBody PersonDTO personDTO) {
+    @PostMapping("/create")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createPerson(@RequestBody PersonDTO personDTO) {
         personService.create(personDTO);
-   }
+    }
 
-   @PostMapping("/add/{id}")
-   @ResponseStatus(HttpStatus.OK)
-   public void addStockToWaller(@PathVariable Integer id, @RequestBody StocksDTO stocksDTO) {
+    @PostMapping("/add/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void addStockToWaller(@PathVariable Integer id, @RequestBody StocksDTO stocksDTO) {
         personService.addStocksToPerson(id, stocksDTO);
-   }
+    }
+
+    @GetMapping("/compare/{id}/{symbol}")
+    public ResponseEntity<PriceComparator> getInfo(@PathVariable Integer id, @PathVariable String symbol) {
+        return new ResponseEntity<>(personService.compareActualPriceBySymbol(id, symbol), HttpStatus.OK);
+    }
 
 }
