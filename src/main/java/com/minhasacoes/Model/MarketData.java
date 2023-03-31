@@ -22,5 +22,14 @@ public class MarketData {
         private String longName;
         private String currency;
         private double regularMarketPrice;
+        private Double regularMarketDayHigh;
+        private Double regularMarketDayLow;
+        private String regularMarketDayRange;
+        private Double regularMarketChange;
+        private Double regularMarketChangePercent;
+        private Long marketCap;
+        private Long regularMarketVolume;
+        private Double regularMarketPreviousClose;
+        private Double regularMarketOpen;
     }
 }

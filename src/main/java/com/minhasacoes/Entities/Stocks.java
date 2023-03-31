@@ -1,4 +1,4 @@
-package com.minhasacoes.Model;
+package com.minhasacoes.Entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

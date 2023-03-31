@@ -1,6 +1,6 @@
 package com.minhasacoes.Repository;
 
-import com.minhasacoes.Model.Person;
+import com.minhasacoes.Entities.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
