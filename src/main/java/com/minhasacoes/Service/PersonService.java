@@ -30,18 +30,6 @@ public class PersonService {
     }
 
     @Transactional
-    public void create(PersonDTO personDTO) {
-        personRepository.save(createPerson(personDTO));
-    }
-
-    private Person createPerson(PersonDTO personDTO) {
-        Person person = new Person();
-        person.setName(personDTO.getName());
-
-        return person;
-    }
-
-    @Transactional
     public void addStocksToPerson(Integer id, StocksDTO stocksDTO) {
         Person person = findById(id);
         Stocks stocks = new Stocks();
