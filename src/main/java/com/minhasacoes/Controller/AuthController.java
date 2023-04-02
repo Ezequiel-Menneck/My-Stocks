@@ -1,7 +1,10 @@
 package com.minhasacoes.Controller;
 
 import com.minhasacoes.Config.Security.JWTUtil;
+import com.minhasacoes.DTO.PersonDTO;
 import com.minhasacoes.Entities.Person;
+import com.minhasacoes.Entities.Roles;
+import com.minhasacoes.Enums.RoleName;
 import com.minhasacoes.Model.LoginCredentials;
 import com.minhasacoes.Repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +34,20 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @PostMapping("/register")
-    public Map<String, Object> registerHandler(@RequestBody Person person) {
-        String encodedPass = passwordEncoder.encode(person.getPassword());
+    public Map<String, Object> registerHandler(@RequestBody PersonDTO personDTO) {
+        Person person = new Person();
+
+        String encodedPass = passwordEncoder.encode(personDTO.getPassword());
+        person.setUsername(personDTO.getUsername());
         person.setPassword(encodedPass);
+
+        Roles roles = new Roles();
+        roles.setRoleName(RoleName.valueOf("USER"));
+        person.getRoles().add(roles);
 
         person = personRepository.save(person);
 
         String token = jwtUtil.generateToken(person.getPassword());
-
         return Collections.singletonMap("jwt-token", token);
     }
 
