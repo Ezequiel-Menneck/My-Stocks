@@ -22,12 +22,6 @@ public class PersonController {
         return new ResponseEntity<>(personService.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/create")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createPerson(@RequestBody PersonDTO personDTO) {
-        personService.create(personDTO);
-    }
-
     @PostMapping("/add/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void addStockToWaller(@PathVariable Integer id, @RequestBody StocksDTO stocksDTO) {
