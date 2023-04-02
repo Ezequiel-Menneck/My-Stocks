@@ -7,6 +7,7 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -29,12 +30,12 @@ public class Person implements UserDetails {
     @ToString.Exclude
     private List<Stocks> wallet;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "Person_Roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     @JsonIgnore
-    private List<Roles> roles;
+    private List<Roles> roles = new ArrayList<>();
 
     public Double getTotalValueInAcoes() {
         double sum = 0;
