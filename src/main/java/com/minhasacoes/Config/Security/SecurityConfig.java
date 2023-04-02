@@ -31,9 +31,9 @@ public class SecurityConfig {
                 .cors()
                 .and()
                 .authorizeHttpRequests((authz) -> authz
+                        .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/person/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/api/adm/**").hasRole("ADMIN")
-                        .requestMatchers("/api/auth/**").permitAll()
                 ).userDetailsService(userDetailsService)
                 .exceptionHandling()
                 .authenticationEntryPoint(
