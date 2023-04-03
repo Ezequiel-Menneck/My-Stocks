@@ -1,6 +1,5 @@
 package com.minhasacoes.Service;
 
-import com.minhasacoes.DTO.PersonDTO;
 import com.minhasacoes.DTO.StocksDTO;
 import com.minhasacoes.Entities.Person;
 import com.minhasacoes.Entities.Stocks;
