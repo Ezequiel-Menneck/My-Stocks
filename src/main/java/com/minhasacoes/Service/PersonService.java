@@ -1,6 +1,5 @@
 package com.minhasacoes.Service;
 
-import com.minhasacoes.DTO.PersonDTO;
 import com.minhasacoes.DTO.StocksDTO;
 import com.minhasacoes.Entities.Person;
 import com.minhasacoes.Entities.Stocks;
@@ -27,6 +26,11 @@ public class PersonService {
     public Person findById(Integer id) {
         Optional<Person> optionalPerson = personRepository.findById(id);
         return optionalPerson.orElseThrow(() -> new ResourceNotFoundException(id));
+    }
+
+    @Transactional
+    public void createPerson(Person person) {
+        personRepository.save(person);
     }
 
     @Transactional
