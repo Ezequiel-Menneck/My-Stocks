@@ -30,6 +30,11 @@ public class PersonService {
     }
 
     @Transactional
+    public void createPerson(Person person) {
+        personRepository.save(person);
+    }
+
+    @Transactional
     public void addStocksToPerson(Integer id, StocksDTO stocksDTO) {
         Person person = findById(id);
         Stocks stocks = new Stocks();
