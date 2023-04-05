@@ -17,12 +17,15 @@ public class JWTUtil {
     @Value("${jwt_secret}")
     private String secret;
 
+    Date expirationTime = new Date(System.currentTimeMillis() + 3600000);
+
     public String generateToken(String password) throws IllegalArgumentException, JWTCreationException {
         return JWT.create()
                 .withSubject("User Details")
                 .withClaim("password", password)
                 .withIssuedAt(new Date())
                 .withIssuer("MyStocks")
+                .withExpiresAt(expirationTime)
                 .sign(Algorithm.HMAC256(secret));
     }
 
