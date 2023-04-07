@@ -91,4 +91,12 @@ public class PersonService {
         return priceComparator;
     }
 
+    public List<Person> getAllPersons() {
+        return personRepository.findAll();
+    }
+
+    public void deletePerson(Integer id) {
+        personRepository.deleteById(id);
+    }
+
 }
