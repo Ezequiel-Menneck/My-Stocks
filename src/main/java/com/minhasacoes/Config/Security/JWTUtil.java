@@ -17,7 +17,7 @@ public class JWTUtil {
     @Value("${jwt_secret}")
     private String secret;
 
-    Date expirationTime = new Date(System.currentTimeMillis() + 3600000);
+    Date expirationTime = new Date(System.currentTimeMillis() + 1800000);
 
     public String generateToken(String password) throws IllegalArgumentException, JWTCreationException {
         return JWT.create()
